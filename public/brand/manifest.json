@@ -1,0 +1,31 @@
+{
+  "brand": "Snackdaddy / BR-OATS",
+  "colors": {
+    "yellow": "#FFD400",
+    "black": "#10110E"
+  },
+  "sourceFontsConvertedToOutlines": {
+    "snackdaddy": "Arial Rounded Bold.ttf",
+    "brOats": "DIN Condensed Bold.ttf"
+  },
+  "svgMasters": [
+    "br-oats-lockup-reversed.svg",
+    "br-oats-wordmark-black.svg",
+    "br-oats-wordmark-yellow.svg",
+    "snackdaddy-mark-black.svg",
+    "snackdaddy-mark-yellow.svg",
+    "snackdaddy-wordmark-black.svg",
+    "snackdaddy-wordmark-reversed.svg",
+    "snackdaddy-wordmark-yellow.svg"
+  ],
+  "pngExports": [
+    "br-oats-lockup-reversed.png",
+    "br-oats-wordmark-black.png",
+    "br-oats-wordmark-yellow.png",
+    "snackdaddy-mark-black.png",
+    "snackdaddy-mark-yellow.png",
+    "snackdaddy-wordmark-black.png",
+    "snackdaddy-wordmark-reversed.png",
+    "snackdaddy-wordmark-yellow.png"
+  ]
+}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ProductCarousel } from "./product-carousel";
 
 const benefits = [
@@ -12,7 +13,9 @@ export default function Home() {
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <header className="site-header">
         <nav className="nav shell" aria-label="Main navigation">
-          <a className="brand" href="#top" aria-label="Snackdaddy home">snackdaddy<span>.</span></a>
+          <a className="brand" href="#top" aria-label="Snackdaddy home">
+            <Image src="/brand/snackdaddy-wordmark-black.svg" alt="Snackdaddy" width={145} height={36} priority />
+          </a>
           <div className="nav-links"><a href="#why">Why BR-OATS</a><a href="#flavours">Flavours</a></div>
           <a className="button button-black button-small" href="#signup">Get first dibs</a>
         </nav>
@@ -75,7 +78,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="footer shell"><a className="brand" href="#top">snackdaddy<span>.</span></a><p>BR-OATS. Breakfast that pulls its weight.</p><p>© 2026 Snackdaddy</p></footer>
+      <footer className="footer shell"><a className="brand" href="#top"><Image src="/brand/snackdaddy-wordmark-black.svg" alt="Snackdaddy" width={145} height={36} /></a><p>BR-OATS. Breakfast that pulls its weight.</p><p>© 2026 Snackdaddy</p></footer>
     </main>
   );
 }
