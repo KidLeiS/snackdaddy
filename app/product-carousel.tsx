@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const flavours = [
   {
     name: "Chai Chocolate",
-    image: "/products/br-oats-chai-chocolate-clear.webp",
+    image: "/products/refined/br-oats-chai-chocolate-regenerated-v1.webp",
   },
   {
     name: "Tiramisu",
