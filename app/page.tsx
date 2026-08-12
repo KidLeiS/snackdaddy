@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FlavourShowcase } from "./flavour-showcase";
 import { ProductCarousel } from "./product-carousel";
 
 const benefits = [
@@ -60,12 +61,7 @@ export default function Home() {
         <div className="flavours-heading">
           <h2 id="flavours-title">Pick tomorrow&apos;s<br />breakfast tonight.</h2>
         </div>
-        <div className="flavour-grid">
-          <article><span>01</span><h3>Chai<br />Chocolate</h3><p>Deep cacao + warm spice.</p></article>
-          <article><span>02</span><h3>Tira<br />misu</h3><p>Coffee-led. Spoon-ready.</p></article>
-          <article><span>03</span><h3>Banana<br />Bread</h3><p>Bakery comfort, breakfast maths.</p></article>
-          <article><span>04</span><h3>PB<br />&amp;J</h3><p>Salty peanut + sharp berry.</p></article>
-        </div>
+        <FlavourShowcase />
       </section>
 
       <section className="statement shell" aria-label="BR-OATS promise">

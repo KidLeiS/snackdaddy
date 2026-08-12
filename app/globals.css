@@ -82,12 +82,49 @@ h1 { margin-bottom: 0; font-size: clamp(62px, 7.5vw, 106px); font-weight: 670; l
 .flavours { padding-bottom: clamp(90px, 11vw, 150px); }
 .flavours-heading { margin-bottom: 45px; }
 .flavour-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 3px solid var(--yellow); }
-.flavour-grid article { position: relative; min-height: 440px; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; border-right: 2px solid var(--yellow); }
-.flavour-grid article:last-child { border-right: 0; }
-.flavour-grid article:nth-child(even) { color: var(--black); background: var(--yellow); }
+.flavour-card { position: relative; min-height: 440px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; border: 0; border-right: 2px solid var(--yellow); padding: 20px; color: var(--yellow); background: var(--black); font: inherit; text-align: left; cursor: pointer; isolation: isolate; }
+.flavour-card:last-child { border-right: 0; }
+.flavour-card:nth-child(even) { color: var(--black); background: var(--yellow); }
+.flavour-card::before { content: ""; position: absolute; z-index: -1; inset: 17% 10%; border: 1px solid currentColor; border-radius: 50%; opacity: 0; transform: scale(.72); transition: opacity 300ms ease, transform 560ms cubic-bezier(.16,1,.3,1); }
 .flavour-grid span { font-family: var(--font-barlow-condensed), Impact, sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .06em; }
-.flavour-grid h3 { margin: auto 0; font-size: clamp(44px, 5vw, 68px); line-height: .76; }
+.flavour-number { position: relative; z-index: 3; }
+.flavour-grid h3 { position: relative; z-index: 2; margin: auto 0; font-size: clamp(44px, 5vw, 68px); line-height: .76; transition: opacity 250ms ease, transform 520ms cubic-bezier(.16,1,.3,1); }
 .flavour-grid p { margin: 0; font-size: 12px; font-weight: 700; }
+.flavour-card-product { position: absolute; z-index: 1; inset: 54px 7px 54px; opacity: 0; transform: translateY(18px) rotate(3deg) scale(.8); transition: opacity 260ms ease, transform 620ms cubic-bezier(.16,1,.3,1); pointer-events: none; }
+.flavour-card-product img { object-fit: contain; filter: drop-shadow(0 20px 15px rgba(0,0,0,.28)); }
+.flavour-card-footer { position: relative; z-index: 3; display: grid; gap: 8px; }
+.flavour-card-footer span { text-transform: uppercase; opacity: .7; }
+.flavour-card:is(:hover, :focus-visible)::before { opacity: .28; transform: scale(1); }
+.flavour-card:is(:hover, :focus-visible) .flavour-card-product { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+.flavour-card:is(:hover, :focus-visible) h3 { opacity: .09; transform: translateY(-12px) scale(.96); }
+.flavour-card:is(:hover, :focus-visible) .flavour-card-footer span { opacity: 1; }
+.flavour-card:focus-visible { z-index: 4; outline: 4px solid currentColor; outline-offset: -7px; }
+
+.product-dialog { width: 100%; max-width: none; height: 100%; max-height: none; overflow: auto; border: 0; padding: clamp(14px, 4vw, 52px); color: var(--yellow); background: transparent; }
+.product-dialog::backdrop { background: rgba(3,4,2,.84); backdrop-filter: blur(9px); }
+.product-dialog[open] { animation: dialog-arrive 320ms ease both; }
+@keyframes dialog-arrive { from { opacity: 0; } to { opacity: 1; } }
+.product-dialog-panel { position: relative; width: min(100%, 1120px); min-height: min(760px, calc(100svh - 104px)); display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(380px, .96fr); margin: auto; overflow: hidden; border: 3px solid var(--yellow); color: var(--yellow); background: var(--black); box-shadow: 18px 18px 0 var(--yellow); animation: dialog-panel-arrive 650ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes dialog-panel-arrive { from { transform: translateY(34px) scale(.97); } to { transform: translateY(0) scale(1); } }
+.product-dialog-close { position: absolute; z-index: 5; top: 18px; right: 18px; width: 46px; height: 46px; display: grid; place-items: center; border: 2px solid currentColor; border-radius: 50%; padding: 0 0 4px; color: var(--yellow); background: var(--black); font-family: Arial, sans-serif; font-size: 31px; line-height: 1; cursor: pointer; transition: color 160ms ease, background 160ms ease, transform 160ms ease; }
+.product-dialog-close:hover { color: var(--black); background: var(--yellow); transform: rotate(5deg); }
+.product-dialog-close:focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
+.product-dialog-visual { position: relative; min-height: 540px; display: flex; flex-direction: column; overflow: hidden; padding: 22px; color: var(--black); background: var(--yellow); }
+.product-dialog-visual::before { content: ""; position: absolute; inset: 14% 9%; border: 1.5px solid rgba(16,17,14,.28); border-radius: 50%; }
+.product-dialog-visual::after { content: ""; position: absolute; right: 16%; bottom: 9%; left: 16%; height: 7%; border-radius: 50%; background: rgba(16,17,14,.2); filter: blur(17px); }
+.product-dialog-visual > p { position: relative; z-index: 2; margin: 0; font-family: var(--font-barlow-condensed), Impact, sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+.product-dialog-image { position: relative; z-index: 1; flex: 1; min-height: 0; animation: dialog-product-arrive 800ms 80ms cubic-bezier(.16,1,.3,1) both; }
+.product-dialog-image img { object-fit: contain; filter: drop-shadow(0 28px 21px rgba(16,17,14,.25)); }
+@keyframes dialog-product-arrive { from { opacity: 0; transform: translateY(28px) rotate(3deg) scale(.9); } to { opacity: 1; transform: translateY(0) rotate(0) scale(1); } }
+.product-dialog-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(74px, 7vw, 100px) clamp(30px, 5vw, 68px) clamp(38px, 5vw, 66px); }
+.product-dialog-kicker { margin: 0 0 22px; font-family: var(--font-barlow-condensed), Impact, sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.product-dialog-copy h2 { max-width: 530px; margin: 0 0 27px; font-size: clamp(62px, 7vw, 98px); font-weight: 650; line-height: .8; }
+.product-dialog-description { max-width: 520px; margin: 0 0 34px; font-size: clamp(17px, 1.6vw, 20px); font-weight: 560; line-height: 1.55; }
+.product-dialog-copy dl { margin: 0 0 36px; border-top: 2px solid var(--yellow); }
+.product-dialog-copy dl > div { display: grid; grid-template-columns: 118px 1fr; gap: 20px; border-bottom: 1px solid var(--yellow); padding-block: 14px; }
+.product-dialog-copy dt { font-family: var(--font-barlow-condensed), Impact, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.product-dialog-copy dd { margin: 0; font-size: 12px; font-weight: 600; line-height: 1.45; }
+.button-dialog { align-self: flex-start; color: var(--black); background: var(--yellow); }
 
 .statement { border-block: 3px solid var(--yellow); padding-block: clamp(30px, 4vw, 48px); }
 .statement p { margin: 0; font-size: clamp(44px, 7.4vw, 96px); font-weight: 800; letter-spacing: -.045em; line-height: .88; white-space: nowrap; }
@@ -125,9 +162,10 @@ h1 { margin-bottom: 0; font-size: clamp(62px, 7.5vw, 106px); font-weight: 670; l
   .why { grid-template-columns: 1fr; }
   .section-intro { position: static; }
   .flavour-grid { grid-template-columns: repeat(2, 1fr); }
-  .flavour-grid article { min-height: 350px; }
-  .flavour-grid article:nth-child(2) { border-right: 0; }
-  .flavour-grid article:nth-child(-n+2) { border-bottom: 2px solid var(--yellow); }
+  .flavour-card { min-height: 350px; }
+  .flavour-card:nth-child(2) { border-right: 0; }
+  .flavour-card:nth-child(-n+2) { border-bottom: 2px solid var(--yellow); }
+  .product-dialog-panel { grid-template-columns: .95fr 1.05fr; }
 }
 
 @media (max-width: 680px) {
@@ -151,8 +189,16 @@ h1 { margin-bottom: 0; font-size: clamp(62px, 7.5vw, 106px); font-weight: 670; l
   .benefit-list article { grid-template-columns: 36px 1fr; }
   .benefit-list article p { grid-column: 2; }
   .flavour-grid { grid-template-columns: 1fr 1fr; }
-  .flavour-grid article { min-height: 285px; padding: 16px; }
+  .flavour-card { min-height: 285px; padding: 16px; }
   .flavour-grid h3 { font-size: clamp(38px, 13vw, 52px); }
+  .flavour-card-product { inset: 42px 0 48px; }
+  .product-dialog { padding: 9px; }
+  .product-dialog-panel { min-height: calc(100svh - 18px); grid-template-columns: 1fr; box-shadow: none; }
+  .product-dialog-visual { min-height: 50svh; padding: 16px; }
+  .product-dialog-copy { padding: 50px 22px 30px; }
+  .product-dialog-copy h2 { font-size: clamp(60px, 21vw, 86px); }
+  .product-dialog-copy dl > div { grid-template-columns: 96px 1fr; gap: 15px; }
+  .product-dialog-close { position: fixed; top: 20px; right: 20px; }
   .statement p { white-space: normal; }
   .signup { margin-right: 12px; padding: 34px 22px; box-shadow: 8px 8px 0 var(--yellow); }
   .signup-grid { grid-template-columns: 1fr; gap: 28px; }
