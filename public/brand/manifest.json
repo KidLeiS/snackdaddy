@@ -4,9 +4,13 @@
     "yellow": "#FFD400",
     "black": "#10110E"
   },
-  "sourceFontsConvertedToOutlines": {
-    "snackdaddy": "Arial Rounded Bold.ttf",
-    "brOats": "DIN Condensed Bold.ttf"
+  "typography": {
+    "primary": "Geist",
+    "display": "Barlow Condensed",
+    "brandMark": "Snackdaddy custom rounded lettering",
+    "logoWeights": {
+      "brOats": 900
+    }
   },
   "svgMasters": [
     "br-oats-lockup-reversed.svg",

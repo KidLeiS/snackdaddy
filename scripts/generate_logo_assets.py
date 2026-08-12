@@ -8,19 +8,51 @@ from pathlib import Path
 
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.ttLib import TTFont
+from fontTools.varLib.instancer import instantiateVariableFont
 
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "public" / "brand"
-SNACKDADDY_FONT = Path("/System/Library/Fonts/Supplemental/Arial Rounded Bold.ttf")
-BROATS_FONT = Path("/System/Library/Fonts/Supplemental/DIN Condensed Bold.ttf")
+NEXT_FONT_DIR = ROOT / ".next" / "static" / "media"
 
 YELLOW = "#FFD400"
 BLACK = "#10110E"
 
 
-def outlined_text(text: str, font_path: Path, em_height: float, tracking: float):
+def font_family(font: TTFont) -> str:
+    for record in font["name"].names:
+        if record.nameID == 1:
+            return record.toUnicode()
+    return ""
+
+
+def find_font(family: str) -> Path:
+    candidates: list[tuple[int, Path]] = []
+    for path in NEXT_FONT_DIR.glob("*.woff2"):
+        font = TTFont(path)
+        if font_family(font) == family:
+            candidates.append((len(font.getGlyphOrder()), path))
+    if not candidates:
+        raise FileNotFoundError(
+            f"Could not find {family}. Run `npm run build` before regenerating assets."
+        )
+    return max(candidates)[1]
+
+
+SNACKDADDY_FONT = Path("/System/Library/Fonts/Supplemental/Arial Rounded Bold.ttf")
+BROATS_FONT = find_font("Barlow Condensed Black")
+
+
+def outlined_text(
+    text: str,
+    font_path: Path,
+    em_height: float,
+    tracking: float,
+    weight: float,
+):
     font = TTFont(font_path)
+    if "fvar" in font:
+        font = instantiateVariableFont(font, {"wght": weight}, inplace=False)
     glyph_set = font.getGlyphSet()
     cmap = font.getBestCmap()
     hmtx = font["hmtx"]
@@ -79,7 +111,7 @@ def svg_document(
 
 
 def mark_document(title: str, foreground: str, background: str) -> str:
-    paths, width, height = outlined_text("sd.", SNACKDADDY_FONT, 230, -13)
+    paths, width, height = outlined_text("sd.", SNACKDADDY_FONT, 230, -13, 850)
     x = (512 - width) / 2
     y = (512 - height) / 2
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
@@ -91,8 +123,8 @@ def mark_document(title: str, foreground: str, background: str) -> str:
 
 
 def lockup_document() -> str:
-    logo_paths, logo_width, logo_height = outlined_text("BR-OATS", BROATS_FONT, 154, -2)
-    sub_paths, sub_width, sub_height = outlined_text("OVERNIGHT OATS", BROATS_FONT, 38, 5)
+    logo_paths, logo_width, logo_height = outlined_text("BR-OATS", BROATS_FONT, 154, -2, 900)
+    sub_paths, sub_width, sub_height = outlined_text("OVERNIGHT OATS", BROATS_FONT, 38, 5, 700)
     padding_x = 34
     padding_y = 30
     gap = 12
@@ -118,10 +150,10 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
 
     snack_paths, snack_width, snack_height = outlined_text(
-        "snackdaddy.", SNACKDADDY_FONT, 124, -8
+        "snackdaddy.", SNACKDADDY_FONT, 124, -8, 850
     )
     broats_paths, broats_width, broats_height = outlined_text(
-        "BR-OATS", BROATS_FONT, 164, -2
+        "BR-OATS", BROATS_FONT, 164, -2, 900
     )
 
     write(
@@ -161,9 +193,11 @@ def main() -> None:
     manifest = {
         "brand": "Snackdaddy / BR-OATS",
         "colors": {"yellow": YELLOW, "black": BLACK},
-        "sourceFontsConvertedToOutlines": {
-            "snackdaddy": SNACKDADDY_FONT.name,
-            "brOats": BROATS_FONT.name,
+        "typography": {
+            "primary": "Geist",
+            "display": "Barlow Condensed",
+            "brandMark": "Snackdaddy custom rounded lettering",
+            "logoWeights": {"brOats": 900},
         },
         "svgMasters": sorted(path.name for path in OUT.glob("*.svg")),
         "pngExports": sorted(
