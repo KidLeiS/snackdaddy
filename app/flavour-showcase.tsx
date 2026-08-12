@@ -137,13 +137,13 @@ export function FlavourShowcase() {
           <div className="product-dialog-copy">
             <h2 id="product-dialog-title" aria-live="polite">{active.name}</h2>
             <p className="product-dialog-description">{active.description}</p>
+            <div className="product-dialog-actions">
+              <a className="button button-dialog" href="https://tally.so/r/KY2BvM">Get first dibs <span aria-hidden="true">→</span></a>
+            </div>
             <dl>
               <div><dt>Flavour profile</dt><dd>{active.profile}</dd></div>
               <div><dt>Make it</dt><dd>Add milk, stir, chill overnight. Grab it in the morning.</dd></div>
             </dl>
-            <div className="product-dialog-actions">
-              <a className="button button-dialog" href="https://tally.so/r/KY2BvM">Get first dibs <span aria-hidden="true">→</span></a>
-            </div>
             <nav className="product-dialog-nav" aria-label="Browse BR-OATS flavours">
               <button type="button" onClick={() => setActiveIndex(previousIndex)}>
                 <small>← Previous</small>
