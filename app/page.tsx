@@ -17,7 +17,7 @@ export default function Home() {
             <Image src="/brand/snackdaddy-wordmark-black.svg" alt="Snackdaddy" width={145} height={36} priority />
           </a>
           <div className="nav-links"><a href="#why">Why BR-OATS</a><a href="#flavours">Flavours</a></div>
-          <a className="button button-black button-small" href="#signup">Get first dibs</a>
+          <a className="button button-black button-small" href="https://tally.so/r/KY2BvM">Get first dibs</a>
         </nav>
       </header>
 
@@ -74,7 +74,7 @@ export default function Home() {
       <section className="signup shell" id="signup" aria-labelledby="signup-title">
         <div className="signup-grid">
           <h2 id="signup-title">Get in before<br />breakfast.</h2>
-          <div><p>First drops, taste tests and launch news. No wellness sermons before 9am.</p><a className="button button-yellow" href="mailto:hello@snackdaddy.co?subject=Put%20me%20on%20the%20BR-OATS%20list">Join the early list <span aria-hidden="true">→</span></a><small>No spam. We&apos;re busy soaking oats.</small></div>
+          <div><p>First drops, taste tests and launch news. No wellness sermons before 9am.</p><a className="button button-yellow" href="https://tally.so/r/KY2BvM">Join the early list <span aria-hidden="true">→</span></a><small>No spam. We&apos;re busy soaking oats.</small></div>
         </div>
       </section>
 
