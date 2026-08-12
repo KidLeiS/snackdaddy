@@ -59,7 +59,9 @@ export default function Home() {
 
       <section className="flavours shell" id="flavours" aria-labelledby="flavours-title">
         <div className="flavours-heading">
-          <h2 id="flavours-title">Pick tomorrow&apos;s<br />breakfast tonight.</h2>
+          <p className="section-kicker">The starting line-up</p>
+          <h2 id="flavours-title">Meet the<br />BR-OATS.</h2>
+          <p>Four proper flavours. One less thing to think about in the morning.</p>
         </div>
         <FlavourShowcase />
       </section>

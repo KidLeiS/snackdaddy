@@ -74,6 +74,9 @@ export function FlavourShowcase() {
     window.requestAnimationFrame(() => dialogRef.current?.showModal());
   };
 
+  const previousIndex = (activeIndex - 1 + products.length) % products.length;
+  const nextIndex = (activeIndex + 1) % products.length;
+
   return (
     <>
       <div className="flavour-grid">
@@ -86,14 +89,17 @@ export function FlavourShowcase() {
             aria-label={`Explore BR-OATS ${product.name}`}
             onClick={(event) => openProduct(index, event.currentTarget)}
           >
-            <span className="flavour-number">{product.number}</span>
+            <span className="flavour-card-topline">
+              <span>{product.number} / 04</span>
+              <span>Overnight oats</span>
+            </span>
             <div className="flavour-card-product" aria-hidden="true">
               <Image src={product.image} alt="" fill sizes="(max-width: 680px) 50vw, 25vw" />
             </div>
             <h3>{product.display}</h3>
             <div className="flavour-card-footer">
               <p>{product.line}</p>
-              <span aria-hidden="true">View flavour ↗</span>
+              <span aria-hidden="true">Meet this BR-OAT <b>↗</b></span>
             </div>
           </button>
         ))}
@@ -115,10 +121,12 @@ export function FlavourShowcase() {
           </button>
 
           <div className="product-dialog-visual">
-            <p>{active.number} / 04</p>
-            <div className="product-dialog-image">
+            <div className="product-dialog-visual-topline">
+              <p>BR-OATS®</p>
+              <p>{active.number} / 04</p>
+            </div>
+            <div className="product-dialog-image" key={active.name}>
               <Image
-                key={active.name}
                 src={active.image}
                 alt={`BR-OATS ${active.name} overnight oats tub`}
                 fill
@@ -129,14 +137,31 @@ export function FlavourShowcase() {
 
           <div className="product-dialog-copy">
             <p className="product-dialog-kicker">BR-OATS flavour {active.number}</p>
-            <h2 id="product-dialog-title">{active.name}</h2>
+            <h2 id="product-dialog-title" aria-live="polite">{active.name}</h2>
             <p className="product-dialog-description">{active.description}</p>
+            <ul className="product-dialog-benefits" aria-label="Product benefits">
+              <li>Higher protein</li>
+              <li>Better fibre</li>
+              <li>Micronutrient dense</li>
+            </ul>
             <dl>
               <div><dt>Flavour profile</dt><dd>{active.profile}</dd></div>
-              <div><dt>Built with</dt><dd>Higher protein · better fibre · micronutrient dense</dd></div>
               <div><dt>Make it</dt><dd>Add milk, stir, chill overnight. Grab it in the morning.</dd></div>
             </dl>
-            <a className="button button-dialog" href="https://tally.so/r/KY2BvM">Get first dibs <span aria-hidden="true">→</span></a>
+            <div className="product-dialog-actions">
+              <a className="button button-dialog" href="https://tally.so/r/KY2BvM">Get first dibs <span aria-hidden="true">→</span></a>
+              <span>Launching soon.<br />No spam, just oats.</span>
+            </div>
+            <nav className="product-dialog-nav" aria-label="Browse BR-OATS flavours">
+              <button type="button" onClick={() => setActiveIndex(previousIndex)}>
+                <small>← Previous</small>
+                <span>{products[previousIndex].name}</span>
+              </button>
+              <button type="button" onClick={() => setActiveIndex(nextIndex)}>
+                <small>Next →</small>
+                <span>{products[nextIndex].name}</span>
+              </button>
+            </nav>
           </div>
         </div>
       </dialog>
