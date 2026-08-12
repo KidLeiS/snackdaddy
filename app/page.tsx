@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ProductCarousel } from "./product-carousel";
 
 const benefits = [
@@ -74,11 +75,11 @@ export default function Home() {
       <section className="signup shell" id="signup" aria-labelledby="signup-title">
         <div className="signup-grid">
           <h2 id="signup-title">Get in before<br />breakfast.</h2>
-          <div><p>First drops, taste tests and launch news. No wellness sermons before 9am.</p><a className="button button-yellow" href="https://tally.so/r/KY2BvM">Join the early list <span aria-hidden="true">→</span></a><small>No spam. We&apos;re busy soaking oats.</small></div>
+          <div><p>First drops, taste tests and launch news. No wellness sermons before 9am.</p><a className="button button-yellow" href="https://tally.so/r/KY2BvM">Join the early list <span aria-hidden="true">→</span></a><small>No spam. We&apos;re busy soaking oats. Read our <Link href="/privacy">privacy policy</Link>.</small></div>
         </div>
       </section>
 
-      <footer className="footer shell"><a className="brand" href="#top"><Image src="/brand/snackdaddy-wordmark-yellow.svg" alt="Snackdaddy" width={145} height={36} /></a><p>BR-OATS. Breakfast that pulls its weight.</p><p>© 2026 Snackdaddy</p></footer>
+      <footer className="footer shell"><a className="brand" href="#top"><Image src="/brand/snackdaddy-wordmark-yellow.svg" alt="Snackdaddy" width={145} height={36} /></a><p>BR-OATS. Breakfast that pulls its weight.</p><div className="footer-meta"><Link href="/privacy">Privacy</Link><p>© 2026 Snackdaddy</p></div></footer>
     </main>
   );
 }
