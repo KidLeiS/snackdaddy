@@ -65,20 +65,13 @@ h1 { margin-bottom: 0; font-size: clamp(62px, 7.5vw, 106px); font-weight: 670; l
 .carousel-pause:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
 
 .ticker { overflow: hidden; border-block: 3px solid var(--yellow); padding: 13px 0 12px; background: var(--yellow); color: var(--black); white-space: nowrap; }
-.ticker div { min-width: max-content; font-family: var(--font-barlow-condensed), Impact, sans-serif; font-size: clamp(21px, 2.5vw, 34px); font-weight: 900; letter-spacing: .01em; }
-.ticker span { display: inline-block; margin-inline: 24px; font-size: .7em; }
+.ticker-track { width: max-content; display: flex; animation: ticker-loop 24s linear infinite; will-change: transform; }
+.ticker-group { flex: none; display: flex; align-items: center; font-family: var(--font-barlow-condensed), Impact, sans-serif; font-size: clamp(21px, 2.5vw, 34px); font-weight: 900; letter-spacing: .01em; text-transform: uppercase; }
+.ticker-item { display: inline-flex; align-items: center; }
+.ticker-item::after { content: "✦"; margin-inline: 24px; font-size: .7em; }
+@keyframes ticker-loop { to { transform: translate3d(-50%, 0, 0); } }
 
-.why { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(50px, 10vw, 140px); padding-block: clamp(90px, 11vw, 150px); }
-.section-intro { position: sticky; top: 30px; align-self: start; }
-.section-intro h2, .flavours h2, .signup h2 { margin: 0; font-size: clamp(51px, 7vw, 88px); font-weight: 630; line-height: .89; }
-.section-intro > p:last-child { max-width: 510px; margin: 30px 0 0; font-size: 18px; font-weight: 550; line-height: 1.6; }
-.benefit-list { border-top: 3px solid var(--yellow); }
-.benefit-list article { display: grid; grid-template-columns: 46px .9fr 1.1fr; gap: 18px; align-items: baseline; border-bottom: 2px solid var(--yellow); padding: 28px 0 30px; }
-.benefit-list span { font-family: var(--font-barlow-condensed), Impact, sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .06em; }
-.benefit-list h3 { margin: 0; font-size: clamp(27px, 3vw, 40px); line-height: 1; }
-.benefit-list p { margin: 0; font-size: 14px; line-height: 1.55; }
-
-.flavours { padding-bottom: clamp(90px, 11vw, 150px); }
+.flavours { padding-block: clamp(90px, 11vw, 150px); }
 .flavours-heading { display: grid; grid-template-columns: 1fr minmax(260px, .42fr); gap: 20px 60px; align-items: end; margin-bottom: 45px; }
 .flavours-heading .section-kicker { grid-column: 1 / -1; margin: 0; font-family: var(--font-barlow-condensed), Impact, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
 .flavours-heading > p:last-child { max-width: 390px; margin: 0 0 7px; font-size: 16px; font-weight: 560; line-height: 1.5; }
@@ -172,8 +165,6 @@ h1 { margin-bottom: 0; font-size: clamp(62px, 7.5vw, 106px); font-weight: 670; l
   .hero-grid { grid-template-columns: 1fr; grid-template-rows: auto minmax(430px, 1fr); padding-top: 138px; }
   .hero-copy { grid-column: 1; grid-row: 1; width: min(70%, 620px); padding-top: 0; }
   .product-carousel { grid-column: 1; grid-row: 2; width: 92%; min-height: 540px; justify-self: center; margin-top: -52px; }
-  .why { grid-template-columns: 1fr; }
-  .section-intro { position: static; }
   .flavour-grid { grid-template-columns: repeat(2, 1fr); }
   .flavour-card { min-height: 390px; }
   .product-dialog-panel { grid-template-columns: .95fr 1.05fr; }
@@ -195,10 +186,6 @@ h1 { margin-bottom: 0; font-size: clamp(62px, 7.5vw, 106px); font-weight: 670; l
   .hero-rule { right: -8%; bottom: 8%; width: 92vw; height: 52vw; }
   .product-carousel { width: 104%; min-height: 460px; margin-top: -24px; transform: translateX(12px); }
   .flavour-caption { right: 0; left: 0; }
-  .ticker div { transform: translateX(-120px); }
-  .why { gap: 55px; padding-block: 80px; }
-  .benefit-list article { grid-template-columns: 36px 1fr; }
-  .benefit-list article p { grid-column: 2; }
   .flavours-heading { grid-template-columns: 1fr; gap: 18px; }
   .flavours-heading .section-kicker { grid-column: 1; }
   .flavours-heading > p:last-child { margin: 0; }
@@ -228,4 +215,5 @@ h1 { margin-bottom: 0; font-size: clamp(62px, 7.5vw, 106px); font-weight: 670; l
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  .ticker-track { animation: none !important; }
 }

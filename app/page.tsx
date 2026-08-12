@@ -3,10 +3,11 @@ import Link from "next/link";
 import { FlavourShowcase } from "./flavour-showcase";
 import { ProductCarousel } from "./product-carousel";
 
-const benefits = [
-  { number: "01", title: "Higher protein", copy: "Built to keep breakfast pulling its weight, long after the first spoonful." },
-  { number: "02", title: "Better fibre", copy: "Oats, seeds and plants chosen to give your gut something useful to work with." },
-  { number: "03", title: "Micronutrient dense", copy: "A more complete morning mix—without turning breakfast into homework." },
+const tickerItems = [
+  "Higher protein",
+  "Better fibre",
+  "Big flavour",
+  "Zero morning fuss",
 ];
 
 export default function Home() {
@@ -39,20 +40,12 @@ export default function Home() {
         <p className="vertical-note" aria-hidden="true">PROTEIN / FIBRE / THE GOOD STUFF</p>
       </section>
 
-      <section className="ticker" aria-label="BR-OATS benefits">
-        <div>HIGHER PROTEIN <span>✦</span> BETTER FIBRE <span>✦</span> BIG FLAVOUR <span>✦</span> ZERO MORNING FUSS <span>✦</span></div>
-      </section>
-
-      <section className="why shell" id="why" aria-labelledby="why-title">
-        <div className="section-intro">
-          <h2 id="why-title">More than<br />a pot of oats.</h2>
-          <p>BR-OATS turns a five-minute night-before habit into the breakfast your morning thought you didn&apos;t have time for.</p>
-        </div>
-        <div className="benefit-list">
-          {benefits.map((benefit) => (
-            <article key={benefit.number}>
-              <span>{benefit.number}</span><h3>{benefit.title}</h3><p>{benefit.copy}</p>
-            </article>
+      <section className="ticker" id="why" aria-label="BR-OATS benefits">
+        <div className="ticker-track">
+          {[false, true].map((duplicate) => (
+            <div className="ticker-group" aria-hidden={duplicate || undefined} key={String(duplicate)}>
+              {tickerItems.map((item) => <span className="ticker-item" key={item}>{item}</span>)}
+            </div>
           ))}
         </div>
       </section>
