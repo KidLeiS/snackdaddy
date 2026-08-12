@@ -29,7 +29,12 @@ export default function Home() {
         <div className="shell hero-grid">
           <div className="hero-copy">
             <h1 id="hero-title">Oats with<br />more to give.</h1>
-            <p className="hero-lede">Higher protein. Better fibre. Micronutrient dense. BR-OATS is the no-fuss overnight breakfast that works harder than it looks.</p>
+            <ul className="hero-points" aria-label="BR-OATS benefits">
+              <li>Higher protein</li>
+              <li>Better fibre</li>
+              <li>Micronutrient dense</li>
+            </ul>
+            <p className="hero-lede">BR-OATS is the no-fuss breakfast for the grab-and-go guy.</p>
             <div className="hero-actions">
               <a className="button button-black" href="#flavours">Meet BR-OATS <span aria-hidden="true">↘</span></a>
               <p><strong>Mix tonight.</strong><br />Win tomorrow morning.</p>
