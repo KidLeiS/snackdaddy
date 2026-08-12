@@ -6,8 +6,8 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Snackdaddy | Better fuel. No lecture.",
-  description: "Bold, high-protein snacks made from ingredients you can pronounce.",
+  title: "BR-OATS by Snackdaddy | Oats with more to give.",
+  description: "Higher-protein, better-fibre, micronutrient-dense overnight oats in four bold flavours.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
 
