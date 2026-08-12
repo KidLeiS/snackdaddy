@@ -34,7 +34,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .hero-rule::after { content: ""; position: absolute; inset: 14%; border: 1px solid var(--line); border-radius: 50%; }
 .hero-grid { min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr) minmax(460px, .95fr); align-items: center; gap: clamp(28px, 4vw, 64px); padding-top: 118px; padding-bottom: 46px; }
 .hero-copy { position: relative; z-index: 4; padding-bottom: 20px; }
-.eyebrow { margin: 0 0 18px; font-family: var(--font-geist-mono), monospace; font-size: 10px; font-weight: 850; letter-spacing: .15em; text-transform: uppercase; }
 h1, h2, h3, p { margin-top: 0; }
 h1, h2, h3 { letter-spacing: -.065em; }
 h1 { margin-bottom: 0; font-size: clamp(62px, 8vw, 114px); font-weight: 670; line-height: .82; }
@@ -82,8 +81,7 @@ h1 { margin-bottom: 0; font-size: clamp(62px, 8vw, 114px); font-weight: 670; lin
 .benefit-list p { margin: 0; font-size: 14px; line-height: 1.55; }
 
 .flavours { padding-bottom: clamp(90px, 11vw, 150px); }
-.flavours-heading { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 45px; }
-.flavours-heading .eyebrow { max-width: 210px; margin-bottom: 7px; }
+.flavours-heading { margin-bottom: 45px; }
 .flavour-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 3px solid var(--black); }
 .flavour-grid article { position: relative; min-height: 440px; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; border-right: 2px solid var(--black); }
 .flavour-grid article:last-child { border-right: 0; }
@@ -134,8 +132,6 @@ h1 { margin-bottom: 0; font-size: clamp(62px, 8vw, 114px); font-weight: 670; lin
   .why { gap: 55px; padding-block: 80px; }
   .benefit-list article { grid-template-columns: 36px 1fr; }
   .benefit-list article p { grid-column: 2; }
-  .flavours-heading { display: block; }
-  .flavours-heading .eyebrow { max-width: none; margin-bottom: 18px; }
   .flavour-grid { grid-template-columns: 1fr 1fr; }
   .flavour-grid article { min-height: 285px; padding: 16px; }
   .flavour-grid h3 { font-size: clamp(38px, 13vw, 52px); }

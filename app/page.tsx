@@ -22,7 +22,6 @@ export default function Home() {
         <div className="hero-rule" aria-hidden="true" />
         <div className="shell hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Overnight oats, overachieving</p>
             <h1 id="hero-title">Oats with<br />more to give.</h1>
             <p className="hero-lede">Higher protein. Better fibre. Micronutrient dense. BR-OATS is the no-fuss overnight breakfast that works harder than it looks.</p>
             <div className="hero-actions">
@@ -41,7 +40,6 @@ export default function Home() {
 
       <section className="why shell" id="why" aria-labelledby="why-title">
         <div className="section-intro">
-          <p className="eyebrow">Breakfast, rebuilt</p>
           <h2 id="why-title">More than<br />a pot of oats.</h2>
           <p>BR-OATS turns a five-minute night-before habit into the breakfast your morning thought you didn&apos;t have time for.</p>
         </div>
@@ -56,7 +54,6 @@ export default function Home() {
 
       <section className="flavours shell" id="flavours" aria-labelledby="flavours-title">
         <div className="flavours-heading">
-          <p className="eyebrow">Four very good reasons to get out of bed</p>
           <h2 id="flavours-title">Pick tomorrow&apos;s<br />breakfast tonight.</h2>
         </div>
         <div className="flavour-grid">
@@ -72,7 +69,6 @@ export default function Home() {
       </section>
 
       <section className="signup shell" id="signup" aria-labelledby="signup-title">
-        <p className="eyebrow">Early spoons get the oats</p>
         <div className="signup-grid">
           <h2 id="signup-title">Get in before<br />breakfast.</h2>
           <div><p>First drops, taste tests and launch news. No wellness sermons before 9am.</p><a className="button button-yellow" href="mailto:hello@snackdaddy.co?subject=Put%20me%20on%20the%20BR-OATS%20list">Join the early list <span aria-hidden="true">→</span></a><small>No spam. We&apos;re busy soaking oats.</small></div>
