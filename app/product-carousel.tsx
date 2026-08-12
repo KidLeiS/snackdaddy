@@ -7,22 +7,18 @@ const flavours = [
   {
     name: "Chai Chocolate",
     image: "/products/br-oats-chai-chocolate-clear.webp",
-    scale: "scale-chai",
   },
   {
     name: "Tiramisu",
-    image: "/products/br-oats-tiramisu-clear.webp",
-    scale: "scale-standard",
+    image: "/products/refined/br-oats-tiramisu-chai-size-v1.webp",
   },
   {
     name: "Banana Bread",
-    image: "/products/br-oats-banana-bread-clear.webp",
-    scale: "scale-standard",
+    image: "/products/refined/br-oats-banana-bread-chai-size-v1.webp",
   },
   {
     name: "PB&J",
-    image: "/products/br-oats-pbj-clear.webp",
-    scale: "scale-standard",
+    image: "/products/refined/br-oats-pbj-chai-size-v1.webp",
   },
 ] as const;
 
@@ -67,7 +63,7 @@ export function ProductCarousel() {
       <div className="carousel-images">
         {flavours.map((flavour, index) => (
           <Image
-            className={index === active ? `product-image ${flavour.scale} is-active` : `product-image ${flavour.scale}`}
+            className={index === active ? "product-image is-active" : "product-image"}
             key={flavour.name}
             src={flavour.image}
             alt={index === active ? `BR-OATS ${flavour.name} overnight oats tub` : ""}

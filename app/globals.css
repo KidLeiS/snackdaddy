@@ -50,8 +50,7 @@ h1 { margin-bottom: 0; font-size: clamp(62px, 7.5vw, 106px); font-weight: 670; l
 .product-carousel::after { content: ""; position: absolute; z-index: -1; right: 19%; bottom: 13%; left: 19%; height: 8%; border-radius: 50%; background: rgba(255,212,0,.18); filter: blur(20px); transform: scaleX(.8); }
 .carousel-images { position: absolute; inset: 0; perspective: 1200px; }
 .carousel-images::before, .carousel-images::after { display: none; }
-.product-image { --rest-scale: .98; --active-scale: 1.02; --enter-scale: .96; z-index: 0; object-fit: contain; opacity: 0; visibility: hidden; filter: contrast(1.03) saturate(1.04); transform: translate3d(-6%,1%,0) rotateY(18deg) scale(var(--rest-scale)); transform-origin: 50% 78%; will-change: opacity, transform; }
-.product-image.scale-chai { --rest-scale: 1.08; --active-scale: 1.12; --enter-scale: 1.06; }
+.product-image { --rest-scale: 1.08; --active-scale: 1.12; --enter-scale: 1.06; z-index: 0; object-fit: contain; opacity: 0; visibility: hidden; filter: contrast(1.03) saturate(1.04); transform: translate3d(-6%,1%,0) rotateY(18deg) scale(var(--rest-scale)); transform-origin: 50% 78%; will-change: opacity, transform; }
 .product-image.is-active { z-index: 1; opacity: 1; visibility: visible; transform: translate3d(0,0,0) rotateY(0deg) scale(var(--active-scale)); animation: product-turn 520ms cubic-bezier(.16,1,.3,1) both; }
 @keyframes product-turn { from { opacity: 0; transform: translate3d(7%,1%,0) rotateY(-18deg) scale(var(--enter-scale)); } to { opacity: 1; transform: translate3d(0,0,0) rotateY(0deg) scale(var(--active-scale)); } }
 .carousel-hit-area { position: absolute; z-index: 5; inset: 0; width: 100%; border: 0; padding: 0; cursor: e-resize; background: transparent; }
