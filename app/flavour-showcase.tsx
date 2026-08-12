@@ -117,7 +117,7 @@ export function FlavourShowcase() {
             aria-label="Close product details"
             onClick={() => dialogRef.current?.close()}
           >
-            <span aria-hidden="true">×</span>
+            <span className="product-dialog-close-icon" aria-hidden="true" />
           </button>
 
           <div className="product-dialog-visual">
@@ -136,21 +136,14 @@ export function FlavourShowcase() {
           </div>
 
           <div className="product-dialog-copy">
-            <p className="product-dialog-kicker">BR-OATS flavour {active.number}</p>
             <h2 id="product-dialog-title" aria-live="polite">{active.name}</h2>
             <p className="product-dialog-description">{active.description}</p>
-            <ul className="product-dialog-benefits" aria-label="Product benefits">
-              <li>Higher protein</li>
-              <li>Better fibre</li>
-              <li>Micronutrient dense</li>
-            </ul>
             <dl>
               <div><dt>Flavour profile</dt><dd>{active.profile}</dd></div>
               <div><dt>Make it</dt><dd>Add milk, stir, chill overnight. Grab it in the morning.</dd></div>
             </dl>
             <div className="product-dialog-actions">
               <a className="button button-dialog" href="https://tally.so/r/KY2BvM">Get first dibs <span aria-hidden="true">→</span></a>
-              <span>Launching soon.<br />No spam, just oats.</span>
             </div>
             <nav className="product-dialog-nav" aria-label="Browse BR-OATS flavours">
               <button type="button" onClick={() => setActiveIndex(previousIndex)}>
