@@ -9,6 +9,7 @@ const benefits = [
 export default function Home() {
   return (
     <main id="top">
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <header className="site-header">
         <nav className="nav shell" aria-label="Main navigation">
           <a className="brand" href="#top" aria-label="Snackdaddy home">snackdaddy<span>.</span></a>
@@ -17,7 +18,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <section className="hero" aria-labelledby="hero-title">
+      <section className="hero" id="main-content" aria-labelledby="hero-title" tabIndex={-1}>
         <div className="hero-rule" aria-hidden="true" />
         <div className="shell hero-grid">
           <div className="hero-copy">
