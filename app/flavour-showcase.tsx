@@ -99,7 +99,6 @@ export function FlavourShowcase() {
             <h3>{product.display}</h3>
             <div className="flavour-card-footer">
               <p>{product.line}</p>
-              <span aria-hidden="true">Meet this BR-OAT <b>↗</b></span>
             </div>
           </button>
         ))}
