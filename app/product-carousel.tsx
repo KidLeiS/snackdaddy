@@ -6,25 +6,21 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const flavours = [
   {
     name: "Chai Chocolate",
-    note: "Cacao depth. Chai warmth.",
     image: "/products/br-oats-chai-chocolate-clear.webp",
     scale: "scale-chai",
   },
   {
     name: "Tiramisu",
-    note: "Coffee shop energy. Breakfast credentials.",
     image: "/products/br-oats-tiramisu-clear.webp",
     scale: "scale-standard",
   },
   {
     name: "Banana Bread",
-    note: "Soft spice. Zero baking required.",
     image: "/products/br-oats-banana-bread-clear.webp",
     scale: "scale-standard",
   },
   {
     name: "PB&J",
-    note: "Salty, jammy, gone by nine.",
     image: "/products/br-oats-pbj-clear.webp",
     scale: "scale-standard",
   },
@@ -32,7 +28,6 @@ const flavours = [
 
 export function ProductCarousel() {
   const [active, setActive] = useState(0);
-  const [userPaused, setUserPaused] = useState(false);
   const pointerStart = useRef<number | null>(null);
   const swiped = useRef(false);
 
@@ -41,10 +36,10 @@ export function ProductCarousel() {
   }, []);
 
   useEffect(() => {
-    if (userPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = window.setInterval(() => move(1), 2000);
     return () => window.clearInterval(timer);
-  }, [move, userPaused]);
+  }, [move]);
 
   return (
     <div
@@ -100,23 +95,6 @@ export function ProductCarousel() {
           if (event.key === "ArrowLeft") { event.preventDefault(); move(-1); }
         }}
       />
-
-      <div className="flavour-caption" aria-live={userPaused ? "polite" : "off"}>
-        <p><span>0{active + 1}</span> / 04</p>
-        <div className="flavour-copy" key={flavours[active].name}>
-          <strong>{flavours[active].name}</strong>
-          <small>{flavours[active].note}</small>
-        </div>
-        <button
-          className="carousel-pause"
-          type="button"
-          aria-label={userPaused ? "Resume automatic flavour rotation" : "Pause automatic flavour rotation"}
-          aria-pressed={userPaused}
-          onClick={() => setUserPaused((current) => !current)}
-        >
-          <span aria-hidden="true">{userPaused ? "▶" : "Ⅱ"}</span>
-        </button>
-      </div>
     </div>
   );
 }
