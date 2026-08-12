@@ -42,7 +42,7 @@ export function ProductCarousel() {
 
   useEffect(() => {
     if (userPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(() => move(1), 3600);
+    const timer = window.setInterval(() => move(1), 2000);
     return () => window.clearInterval(timer);
   }, [move, userPaused]);
 
