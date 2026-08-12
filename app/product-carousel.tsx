@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const flavours = [
   {
@@ -33,35 +33,40 @@ const flavours = [
 export function ProductCarousel() {
   const [active, setActive] = useState(0);
   const [userPaused, setUserPaused] = useState(false);
-  const [interactionPaused, setInteractionPaused] = useState(false);
   const pointerStart = useRef<number | null>(null);
-  const paused = userPaused || interactionPaused;
+  const swiped = useRef(false);
 
-  const move = (direction: 1 | -1) => {
+  const move = useCallback((direction: 1 | -1) => {
     setActive((current) => (current + direction + flavours.length) % flavours.length);
-  };
+  }, []);
 
   useEffect(() => {
-    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(() => move(1), 5000);
+    if (userPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => move(1), 3600);
     return () => window.clearInterval(timer);
-  }, [paused]);
+  }, [move, userPaused]);
 
   return (
     <div
       className="product-carousel"
       aria-roledescription="carousel"
       aria-label="BR-OATS flavours"
-      onMouseEnter={() => setInteractionPaused(true)}
-      onMouseLeave={() => setInteractionPaused(false)}
-      onFocus={() => setInteractionPaused(true)}
-      onBlur={() => setInteractionPaused(false)}
-      onPointerDown={(event) => { pointerStart.current = event.clientX; }}
+      onPointerDown={(event) => {
+        pointerStart.current = event.clientX;
+        swiped.current = false;
+      }}
       onPointerUp={(event) => {
         if (pointerStart.current === null) return;
         const distance = event.clientX - pointerStart.current;
-        if (Math.abs(distance) > 38) move(distance < 0 ? 1 : -1);
+        if (Math.abs(distance) > 38) {
+          swiped.current = true;
+          move(distance < 0 ? 1 : -1);
+        }
         pointerStart.current = null;
+      }}
+      onPointerCancel={() => {
+        pointerStart.current = null;
+        swiped.current = false;
       }}
     >
       <div className="carousel-images">
@@ -83,14 +88,20 @@ export function ProductCarousel() {
         className="carousel-hit-area"
         type="button"
         aria-label={`Showing ${flavours[active].name}. Show next flavour.`}
-        onClick={() => move(1)}
+        onClick={() => {
+          if (swiped.current) {
+            swiped.current = false;
+            return;
+          }
+          move(1);
+        }}
         onKeyDown={(event) => {
           if (event.key === "ArrowRight") { event.preventDefault(); move(1); }
           if (event.key === "ArrowLeft") { event.preventDefault(); move(-1); }
         }}
       />
 
-      <div className="flavour-caption" aria-live={paused ? "polite" : "off"}>
+      <div className="flavour-caption" aria-live={userPaused ? "polite" : "off"}>
         <p><span>0{active + 1}</span> / 04</p>
         <div className="flavour-copy" key={flavours[active].name}>
           <strong>{flavours[active].name}</strong>
