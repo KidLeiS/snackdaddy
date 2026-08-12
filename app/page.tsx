@@ -34,7 +34,7 @@ export default function Home() {
               <li>Better fibre</li>
               <li>Micronutrient dense</li>
             </ul>
-            <p className="hero-lede">BR-OATS is the no-fuss breakfast for the grab-and-go guy.</p>
+            <p className="hero-lede">BR-OATS is the no-fuss breakfast<br />for the grab-and-go guy.</p>
             <div className="hero-actions">
               <a className="button button-black" href="#flavours">Meet BR-OATS <span aria-hidden="true">↘</span></a>
               <p><strong>Mix tonight.</strong><br />Win tomorrow morning.</p>
